@@ -71,17 +71,17 @@ jobs:
         sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
         sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
         sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
-        cd package/kernel/
-        git clone https://github.com/CWZ7605/rtl8192eu_for_openwrt.git
         
     - name: Update & Install feeds
       working-directory: ./openwrt
       run: |
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-    #- name: Import external feeds
-    #  working-directory: ./openwrt
-    #  run: |
+    - name: Import external feeds
+      working-directory: ./openwrt
+      run: |
+        cd package/kernel/
+        git clone https://github.com/CWZ7605/rtl8192eu_for_openwrt.git
     #    git clone https://github.com/xiaorouji/openwrt-passwall.git package/lienol
     #    git clone "your_github_link" package/"your_folder_name"      
 
